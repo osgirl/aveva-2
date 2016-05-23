@@ -1,0 +1,20 @@
+﻿---
+ID: "f4326af6-5eee-4a2e-9563-3cc049af59e8"
+Parent: "0de95ae4-41ab-4d01-9eb0-67441b7c2450"
+Template: "ed6552db-2852-400e-9e22-58c0554e5639"
+Path: /sitecore/content/Menu Header
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20160520T144421Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "c838666c-41da-4a2e-afed-1f4ef0598f85"
+      Hint: Header
+      Value: dasdasdasd
