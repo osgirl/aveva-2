@@ -149,3 +149,4 @@ _[Uu]pgradeReport_Files*/
 
 # Force Include
 # example: !/SharedLibs/*
+/packages
