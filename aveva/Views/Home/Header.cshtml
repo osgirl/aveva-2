@@ -1,0 +1,110 @@
+﻿@model  aveva.viewmodels.HeaderViewModel
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Analytics.Extensions
+@using Sitecore.Mvc.Presentation
+<div id="header">
+    <div class="wrap">
+        <a href="@Model.LogoUrl" id="logo">AVEVA</a>
+        <div class="print-logo"><img src="http://www.aveva.com/images/aveva_logo.png"></div>
+        <div id="login"><a class="aveva-world" title="AVEVA WORLD" href="/en/About_AVEVA/AVEVA_World.aspx">@Model.Title</a><a class="aveva-countrys" href="#"><span><em>EN | </em>Change Language</span></a></div>
+        <div id="quick-search">
+            <script>
+
+                (function () {
+                    var cx = '004085358937423836264:vvapdvykqhw';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                        '//www.google.com/cse/cse.js?&cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                })();
+                $(document).ready(function () {
+                    var searchStr = 'Search';
+
+                    function pollSiteSearch(count) {
+                        if (jQuery('#gsc-i-id1')[0] === undefined && count < 100) {
+                            setTimeout(function () { pollSiteSearch(++count) }, 100);
+                        } else if (!jQuery('#gsc-i-id1').is(":focus")) {
+                            jQuery('#gsc-i-id1').attr("value", searchStr);
+                            jQuery('#gsc-i-id1').attr("title", searchStr);
+                        }
+                    } pollSiteSearch(0);
+
+                    jQuery('#quick-search').on('blur', '#gsc-i-id1', function () {
+                        if (jQuery('#gsc-i-id1').attr("value") == "") {
+                            jQuery('#gsc-i-id1').attr("value", searchStr);
+                        }
+                    });
+                    jQuery('#quick-search').on('focus', '#gsc-i-id1', function () {
+                        if (jQuery('#gsc-i-id1').attr("value") == searchStr) {
+                            jQuery('#gsc-i-id1').attr("value", "");
+                        }
+                    });
+                    jQuery('#quick-search').on('DOMSubtreeModified', function (e) {
+                        if (jQuery('.gsc-results-wrapper-overlay').css("visibility") == "visible") {
+                            jQuery('input').blur();
+                        }
+                    });
+
+                    jQuery("#quick-search").on('click', '.gsc-search-button-v2', function (e) {
+                        e.stopImmediatePropagation();
+                        dataLayer.push({ 'event': 'search-performed', 'virtualPageName': virtualPageName() });
+                    });
+
+                    jQuery("#quick-search").on('keyup', '#gsc-i-id1', function (e) {
+                        if (e.keyCode == 13) {
+                            e.stopImmediatePropagation();
+                            dataLayer.push({ 'event': 'search-performed', 'virtualPageName': virtualPageName() });
+                        }
+                    });
+
+                    var virtualPageName = function () {
+                        var url = window.location.href;
+                        var searchTerm = jQuery('#gsc-i-id1').val();
+                        return url + queryStringPrefix(url) + 'query=' + searchTerm;
+                    }
+
+                    var queryStringPrefix = function (url) {
+                        if (url.indexOf('?') > -1) {
+                            return '&';
+                        } else {
+                            return '?';
+                        }
+                    }
+
+                });
+            </script>
+            <style>
+                #header #quick-search .gsc-above-wrapper-area-container {
+                    background: url(/~/media/4ACB2F8A45D14499AAEC9FB7DB903CB9.ashx?lang=en) no-repeat;
+                    background-position: 50% 7px;
+                    height: 55px;
+                }
+            </style>
+            <div id="___gcse_0">
+                <div class="gsc-control-cse gsc-control-cse-en">
+                    <div class="gsc-control-wrapper-cse" dir="ltr">
+                        <form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8">
+                            <table cellspacing="0" cellpadding="0" class="gsc-search-box">
+                                <tbody>
+                                    <tr><td class="gsc-input">
+    <div class="gsc-input-box" id="gsc-iw-id1">
+        <table cellspacing="0" cellpadding="0" id="gs_id50" class="gstl_50 " style="width: 100%; padding: 0px;">
+            <tbody><tr><td id="gs_tti50" class="gsib_a">
+    <input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="Search" id="gsc-i-id1" dir="ltr" spellcheck="false" style="width: 100%; padding: 0px; border: none; margin: 0px; height: auto; outline: none; background: url(&quot;http://www.google.com/cse/static/en/google_custom_search_watermark.gif&quot;) 0% 50% no-repeat rgb(255, 255, 255);" value="Search">
+</td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" style="display: none;"><span class="gscb_a" id="gs_cb50">×</span></a></div></td></tr></tbody>
+        </table>
+    </div><input type="hidden" name="bgresponse" id="bgresponse">
+</td><td class="gsc-search-button"><input type="image" src="https://www.google.com/uds/css/v2/search_box_icon.png" class="gsc-search-button gsc-search-button-v2" title="search"></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr>
+                                </tbody>
+                            </table><table cellspacing="0" cellpadding="0" class="gsc-branding"><tbody><tr><td class="gsc-branding-user-defined"></td><td class="gsc-branding-text"><div class="gsc-branding-text">powered by</div></td><td class="gsc-branding-img"><img src="https://www.google.com/uds/css/small-logo.png" class="gsc-branding-img"></td></tr></tbody></table>
+                        </form><div class="gsc-results-wrapper-overlay"><div class="gsc-results-close-btn" tabindex="0"></div><div class="gsc-tabsAreaInvisible"><div class="gsc-tabHeader gsc-inline-block gsc-tabhActive">Custom Search</div><span class="gs-spacer"> </span></div><div class="gsc-tabsAreaInvisible"></div><div class="gsc-above-wrapper-area-invisible"><table cellspacing="0" cellpadding="0" class="gsc-above-wrapper-area-container"><tbody><tr><td class="gsc-result-info-container"><div class="gsc-result-info-invisible"></div></td><td class="gsc-orderby-container"><div class="gsc-orderby-invisible"><div class="gsc-orderby-label gsc-inline-block">Sort by:</div><div class="gsc-option-menu-container gsc-inline-block"><div class="gsc-selected-option-container gsc-inline-block"><div class="gsc-selected-option">Relevance</div><div class="gsc-option-selector"></div></div><div class="gsc-option-menu-invisible"><div class="gsc-option-menu-item gsc-option-menu-item-highlighted"><div class="gsc-option">Relevance</div></div><div class="gsc-option-menu-item"><div class="gsc-option">Date</div></div></div></div></div></td></tr></tbody></table></div><div class="gsc-adBlockInvisible"></div><div class="gsc-wrapper"><div class="gsc-adBlockInvisible"></div><div class="gsc-resultsbox-invisible"><div class="gsc-resultsRoot gsc-tabData gsc-tabdActive"><table cellspacing="0" cellpadding="0" class="gsc-resultsHeader"><tbody><tr><td class="gsc-twiddleRegionCell"><div class="gsc-twiddle"><div class="gsc-title">Web</div></div><div class="gsc-stats"></div><div class="gsc-results-selector gsc-all-results-active"><div class="gsc-result-selector gsc-one-result" title="show one result">&nbsp;</div><div class="gsc-result-selector gsc-more-results" title="show more results">&nbsp;</div><div class="gsc-result-selector gsc-all-results" title="show all results">&nbsp;</div></div></td><td class="gsc-configLabelCell"></td></tr></tbody></table><div><div class="gsc-expansionArea"></div></div></div></div></div></div><div class="gsc-modal-background-image" tabindex="0"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul id="nav" class="clearfix"><li><a href="/en/About_AVEVA.aspx">About</a><div class="dd"><ul><li><a href="/en/About_AVEVA/AVEVA_World.aspx">AVEVA World</a></li><li><a href="/en/About_AVEVA/Careers.aspx">Careers</a></li><li><a href="/en/About_AVEVA/Graduates.aspx">Graduate Programme</a></li><li><a href="/en/About_AVEVA/Partners.aspx">Global Partner Network</a></li><li><a href="/en/About_AVEVA/Awards.aspx">AVEVA Awards</a></li><li><a href="/en/About_AVEVA/Industry_Affiliations.aspx">Industry Affiliations</a></li><li class="no-border"><a href="/en/About_AVEVA/History.aspx">AVEVA Milestones</a></li></ul></div></li><li class=""><a href="/en/Digital-Asset.aspx">Digital Asset</a><div class="dd"><ul><li><a href="/en/Digital-Asset/The-Digital-Asset-Solutions.aspx">Solution Suites</a></li><li><a href="/en/Digital-Asset/The-Digital-Asset-Strategies.aspx">Strategies</a></li><li class="no-border"><a href="/en/Digital-Asset/Context-Technology.aspx">Context Technology</a></li></ul></div></li><li><a href="/en/Products_and_Services.aspx">Products</a><div class="dd"><ul><li><a href="/en/Products_and_Services/Solution_Finder.aspx">Solution Finder</a></li><li><a href="/en/Products_and_Services/Product_Finder.aspx">Product Finder</a></li><li><a href="/en/Products_and_Services/Training.aspx">Product Training</a></li><li><a href="/en/Products_and_Services/Product_Support.aspx">Product Support</a></li><li class="no-border"><a href="/en/Products_and_Services/Product_Licensing.aspx">Product Licensing</a></li></ul></div></li><li><a href="/en/Industry_Sectors.aspx">Industry Sectors</a><div class="dd"><ul><li><a href="/en/Industry_Sectors/Oil_and_Gas.aspx">Oil &amp; Gas</a></li><li><a href="/en/Industry_Sectors/Marine.aspx">Marine &amp; Offshore</a></li><li><a href="/en/Industry_Sectors/Power.aspx">Power</a></li><li><a href="/en/Industry_Sectors/Chemical.aspx">Chemicals</a></li><li><a href="/en/Industry_Sectors/Mining.aspx">Mining &amp; Minerals</a></li><li class="no-border"><a href="/en/Industry_Sectors/Pulp_and_Paper.aspx">Pulp &amp; Paper</a></li></ul></div></li><li><a href="/en/News-Events.aspx">News &amp; Events</a><div class="dd"><ul><li><a href="/en/News-Events/Press-Releases.aspx">Press Releases</a></li><li><a href="/en/News-Events/Press_Contacts.aspx">Press Contacts</a></li><li><a href="/en/News-Events/AVEVA_in_the_Media.aspx">AVEVA in the Media</a></li><li><a href="/en/News-Events/Events.aspx">Events</a></li><li class="no-border"><a href="/en/News-Events/Webinars.aspx">AVEVA Webinars</a></li></ul></div></li><li><a href="/en/Media-Centre.aspx">Publications</a><div class="dd"><ul><li><a href="/en/Media-Centre/AWM.aspx">AVEVA World Magazine</a></li><li><a href="/en/Media-Centre/Brochures-Solution.aspx">Solution Brochures</a></li><li><a href="/en/Media-Centre/Brochures-Product.aspx">Product Brochures</a></li><li><a href="/en/Media-Centre/Business_Papers.aspx">Business Papers</a></li><li><a href="/en/Media-Centre/Case_Studies.aspx">Case Studies</a></li><li class="no-border"><a href="/en/Media-Centre/Videos.aspx">AVEVA Videos</a></li></ul></div></li><li><a href="/en/Investors.aspx">Investors</a><div class="dd"><ul><li><a href="/en/Investors/Investor-Overview.aspx">Investor Overview</a></li><li><a href="/en/Investors/results-centre.aspx">Results Centre</a></li><li><a href="/en/Investors/key-financial-information.aspx">Key Financial Information</a></li><li><a href="/en/Investors/financial-reports.aspx">Financial Reports</a></li><li><a href="/en/Investors/presentations.aspx">Presentations</a></li><li><a href="/en/Investors/share-information.aspx">Share Information</a></li><li><a href="/en/Investors/interactive-factsheet.aspx">Interactive Factsheet</a></li><li><a href="/en/Investors/upcoming-events.aspx">Upcoming Events</a></li><li><a href="/en/Investors/regulatory-news.aspx">Regulatory News</a></li><li><a href="/en/Investors/corporate-governance.aspx">Corporate Governance</a></li><li><a href="/en/Investors/alerts.aspx">Alerts</a></li><li class="no-border"><a href="/en/Investors/ir-contacts.aspx">IR Contacts</a></li></ul></div></li><li><a href="/en/Contact.aspx">Contact</a><div class="dd"><ul><li class="no-border"><a href="/en/Contact/Worldwide_Offices.aspx">Worldwide Offices</a></li></ul></div></li></ul>
+    </div>
+</div>
