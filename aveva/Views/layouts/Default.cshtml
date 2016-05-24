@@ -10,16 +10,33 @@
 <head>
     @*<title>@Html.Sitecore().Field("title", new { DisableWebEdit = true })</title>*@
     @Html.Sitecore().VisitorIdentification()
+    <link href="~/css/base.css" rel="stylesheet" />
+    <link href="~/css/basemod.css" rel="stylesheet" />
+    <link href="~/css/content.css" rel="stylesheet" />
+    <link href="~/css/default.css" rel="stylesheet" />
+    <link href="~/css/defaulten.css" rel="stylesheet" />
+    <link href="~/css/flexslider.css" rel="stylesheet" />
+    <link href="~/css/jquery-ui-1.9.0.custom.css" rel="stylesheet" />
+    <link href="~/css/jquery.fancybox.css" rel="stylesheet" />
+    <link href="~/css/layout.css" rel="stylesheet" />
+    <link href="~/css/print_base.css" rel="stylesheet" />
+    <link href="~/css/tc.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
-        @Html.Sitecore().Placeholder("header")
-    </div>
-    <div>
-        @Html.Sitecore().Placeholder("body")
-    </div>
-    <div>
-        @Html.Sitecore().Placeholder("footer")
-    </div>
+    <form method="post" action="/" id="ct107">
+        <div class="page_margins">
+            <div class="page">
+                <div>
+                    @Html.Sitecore().Placeholder("header")
+                </div>
+                <div id="main">
+                    @Html.Sitecore().Placeholder("body")
+                </div>
+                <div id="footer">
+                    @Html.Sitecore().Placeholder("footer")
+                </div>
+            </div>
+        </div>
+    </form>
 </body>
 </html>

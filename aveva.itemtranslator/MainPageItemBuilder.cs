@@ -24,6 +24,27 @@ namespace aveva.itemtranslator
                 headerViewModel.LogoUrl = Sitecore.StringUtil.EnsurePrefix('/', Sitecore.Resources.Media.MediaManager.GetMediaUrl(media));
             }
 
+            var menus = headerItem.GetChildren();
+
+            foreach (Item menu in menus)
+            {
+                var menuViewModel = new MenuViewModel()
+                {
+                    Name = menu.Fields["Name"].ToString(),
+                    Link = menu.Fields["Link"].ToString()
+                };
+                foreach (Item subMenu in menu.GetChildren())
+                {
+                    menuViewModel.SubMenus.Add(new MenuViewModel()
+                    {
+                        Name = subMenu.Fields["Name"].ToString(),
+                        Link = subMenu.Fields["Link"].ToString()
+                    });
+                }
+                headerViewModel.Menus.Add(menuViewModel);
+            }
+
+
             return headerViewModel;
         }
 

@@ -8,8 +8,15 @@ namespace aveva.viewmodels
 {
     public class HeaderViewModel
     {
-        public string LogoUrl  { get; set; }
+        public string LogoUrl { get; set; }
 
         public string Title { get; set; }
+
+        public IList<MenuViewModel> Menus { get; set; }
+
+        public HeaderViewModel()
+        {
+            Menus = new List<MenuViewModel>();
+        }
     }
 }

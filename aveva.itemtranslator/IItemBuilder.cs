@@ -10,6 +10,7 @@ namespace aveva.itemtranslator
     interface IItemBuilder<T> where T : class
     {
         T CreateModel(Item sitecoreItem);
+
         Item TranslateToItem();
     }
 }
